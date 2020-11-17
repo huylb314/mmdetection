@@ -1,14 +1,9 @@
 import argparse
 
-import torch
 from mmcv import Config
 
 from mmdet.models import build_detector
-
-try:
-    from mmcv.cnn import get_model_complexity_info
-except ImportError:
-    raise ImportError('Please upgrade mmcv to >0.6.2')
+from mmdet.utils import get_model_complexity_info
 
 
 def parse_args():
@@ -36,15 +31,8 @@ def main():
         raise ValueError('invalid input shape')
 
     cfg = Config.fromfile(args.config)
-    # import modules from string list.
-    if cfg.get('custom_imports', None):
-        from mmcv.utils import import_modules_from_strings
-        import_modules_from_strings(**cfg['custom_imports'])
-
     model = build_detector(
-        cfg.model, train_cfg=cfg.train_cfg, test_cfg=cfg.test_cfg)
-    if torch.cuda.is_available():
-        model.cuda()
+        cfg.model, train_cfg=cfg.train_cfg, test_cfg=cfg.test_cfg).cuda()
     model.eval()
 
     if hasattr(model, 'forward_dummy'):
@@ -56,8 +44,8 @@ def main():
 
     flops, params = get_model_complexity_info(model, input_shape)
     split_line = '=' * 30
-    print(f'{split_line}\nInput shape: {input_shape}\n'
-          f'Flops: {flops}\nParams: {params}\n{split_line}')
+    print('{0}\nInput shape: {1}\nFlops: {2}\nParams: {3}\n{0}'.format(
+        split_line, input_shape, flops, params))
     print('!!!Please be cautious if you use the results in papers. '
           'You may need to check if all ops are supported and verify that the '
           'flops computation is correct.')

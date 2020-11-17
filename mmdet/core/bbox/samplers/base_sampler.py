@@ -6,7 +6,6 @@ from .sampling_result import SamplingResult
 
 
 class BaseSampler(metaclass=ABCMeta):
-    """Base class of samplers."""
 
     def __init__(self,
                  num,
@@ -23,12 +22,10 @@ class BaseSampler(metaclass=ABCMeta):
 
     @abstractmethod
     def _sample_pos(self, assign_result, num_expected, **kwargs):
-        """Sample positive samples."""
         pass
 
     @abstractmethod
     def _sample_neg(self, assign_result, num_expected, **kwargs):
-        """Sample negative samples."""
         pass
 
     def sample(self,
@@ -95,7 +92,6 @@ class BaseSampler(metaclass=ABCMeta):
         neg_inds = self.neg_sampler._sample_neg(
             assign_result, num_expected_neg, bboxes=bboxes, **kwargs)
         neg_inds = neg_inds.unique()
-
         sampling_result = SamplingResult(pos_inds, neg_inds, bboxes, gt_bboxes,
                                          assign_result, gt_flags)
         return sampling_result

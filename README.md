@@ -1,6 +1,4 @@
-<div align="center">
-  <img src="resources/mmdet-logo.png" width="600"/>
-</div>
+# MMDetection
 
 **News**: We released the technical report on [ArXiv](https://arxiv.org/abs/1906.07155).
 
@@ -8,13 +6,12 @@ Documentation: https://mmdetection.readthedocs.io/
 
 ## Introduction
 
-MMDetection is an open source object detection toolbox based on PyTorch. It is
-a part of the OpenMMLab project developed by [Multimedia Laboratory, CUHK](http://mmlab.ie.cuhk.edu.hk/).
+The master branch works with **PyTorch 1.1 to 1.4**.
 
-The master branch works with **PyTorch 1.3 to 1.6**.
-The old v1.x branch works with PyTorch 1.1 to 1.4, but v2.0 is strongly recommended for faster speed, higher performance, better design and more friendly usage.
+mmdetection is an open source object detection toolbox based on PyTorch. It is
+a part of the open-mmlab project developed by [Multimedia Laboratory, CUHK](http://mmlab.ie.cuhk.edu.hk/).
 
-![demo image](resources/coco_test_12510.jpg)
+![demo image](demo/coco_test_12510.jpg)
 
 ### Major features
 
@@ -28,7 +25,7 @@ The old v1.x branch works with PyTorch 1.1 to 1.4, but v2.0 is strongly recommen
 
 - **High efficiency**
 
-  All basic bbox and mask operations run on GPUs. The training speed is faster than or comparable to other codebases, including [Detectron2](https://github.com/facebookresearch/detectron2), [maskrcnn-benchmark](https://github.com/facebookresearch/maskrcnn-benchmark) and [SimpleDet](https://github.com/TuSimple/simpledet).
+  All basic bbox and mask operations run on GPUs now. The training speed is faster than or comparable to other codebases, including [Detectron](https://github.com/facebookresearch/Detectron), [maskrcnn-benchmark](https://github.com/facebookresearch/maskrcnn-benchmark) and [SimpleDet](https://github.com/TuSimple/simpledet).
 
 - **State of the art**
 
@@ -42,81 +39,59 @@ This project is released under the [Apache 2.0 license](LICENSE).
 
 ## Changelog
 
-v2.6.0 was released in 1/11/2020.
-Please refer to [changelog.md](docs/changelog.md) for details and release history.
-A comparison between v1.x and v2.0 codebases can be found in [compatibility.md](docs/compatibility.md).
+v1.1.0 was released in 24/2/2020.
+Please refer to [CHANGELOG.md](docs/CHANGELOG.md) for details and release history.
 
 ## Benchmark and model zoo
 
-Results and models are available in the [model zoo](docs/model_zoo.md).
+Supported methods and backbones are shown in the below table.
+Results and models are available in the [Model zoo](docs/MODEL_ZOO.md).
 
-Supported backbones:
-- [x] ResNet
-- [x] ResNeXt
-- [x] VGG
-- [x] HRNet
-- [x] RegNet
-- [x] Res2Net
+|                    | ResNet   | ResNeXt  | SENet    | VGG      | HRNet |
+|--------------------|:--------:|:--------:|:--------:|:--------:|:-----:|
+| RPN                | ✓        | ✓        | ☐        | ✗        | ✓     |
+| Fast R-CNN         | ✓        | ✓        | ☐        | ✗        | ✓     |
+| Faster R-CNN       | ✓        | ✓        | ☐        | ✗        | ✓     |
+| Mask R-CNN         | ✓        | ✓        | ☐        | ✗        | ✓     |
+| Cascade R-CNN      | ✓        | ✓        | ☐        | ✗        | ✓     |
+| Cascade Mask R-CNN | ✓        | ✓        | ☐        | ✗        | ✓     |
+| SSD                | ✗        | ✗        | ✗        | ✓        | ✗     |
+| RetinaNet          | ✓        | ✓        | ☐        | ✗        | ✓     |
+| GHM                | ✓        | ✓        | ☐        | ✗        | ✓     |
+| Mask Scoring R-CNN | ✓        | ✓        | ☐        | ✗        | ✓     |
+| Double-Head R-CNN  | ✓        | ✓        | ☐        | ✗        | ✓     |
+| Grid R-CNN (Plus)  | ✓        | ✓        | ☐        | ✗        | ✓     |
+| Hybrid Task Cascade| ✓        | ✓        | ☐        | ✗        | ✓     |
+| Libra R-CNN        | ✓        | ✓        | ☐        | ✗        | ✓     |
+| Guided Anchoring   | ✓        | ✓        | ☐        | ✗        | ✓     |
+| FCOS               | ✓        | ✓        | ☐        | ✗        | ✓     |
+| RepPoints          | ✓        | ✓        | ☐        | ✗        | ✓     |
+| Foveabox           | ✓        | ✓        | ☐        | ✗        | ✓     |
+| FreeAnchor         | ✓        | ✓        | ☐        | ✗        | ✓     |
+| NAS-FPN            | ✓        | ✓        | ☐        | ✗        | ✓     |
+| ATSS               | ✓        | ✓        | ☐        | ✗        | ✓     |
 
-Supported methods:
-- [x] [RPN](configs/rpn)
-- [x] [Fast R-CNN](configs/fast_rcnn)
-- [x] [Faster R-CNN](configs/faster_rcnn)
-- [x] [Mask R-CNN](configs/mask_rcnn)
-- [x] [Cascade R-CNN](configs/cascade_rcnn)
-- [x] [Cascade Mask R-CNN](configs/cascade_rcnn)
-- [x] [SSD](configs/ssd)
-- [x] [RetinaNet](configs/retinanet)
-- [x] [GHM](configs/ghm)
-- [x] [Mask Scoring R-CNN](configs/ms_rcnn)
-- [x] [Double-Head R-CNN](configs/double_heads)
-- [x] [Hybrid Task Cascade](configs/htc)
-- [x] [Libra R-CNN](configs/libra_rcnn)
-- [x] [Guided Anchoring](configs/guided_anchoring)
-- [x] [FCOS](configs/fcos)
-- [x] [RepPoints](configs/reppoints)
-- [x] [Foveabox](configs/foveabox)
-- [x] [FreeAnchor](configs/free_anchor)
-- [x] [NAS-FPN](configs/nas_fpn)
-- [x] [ATSS](configs/atss)
-- [x] [FSAF](configs/fsaf)
-- [x] [PAFPN](configs/pafpn)
-- [x] [Dynamic R-CNN](configs/dynamic_rcnn)
-- [x] [PointRend](configs/point_rend)
+Other features
 - [x] [CARAFE](configs/carafe/README.md)
 - [x] [DCNv2](configs/dcn/README.md)
 - [x] [Group Normalization](configs/gn/README.md)
 - [x] [Weight Standardization](configs/gn+ws/README.md)
-- [x] [OHEM](configs/faster_rcnn/faster_rcnn_r50_fpn_ohem_1x_coco.py)
-- [x] [Soft-NMS](configs/faster_rcnn/faster_rcnn_r50_fpn_soft_nms_1x_coco.py)
+- [x] [OHEM](configs/faster_rcnn_ohem_r50_fpn_1x.py)
+- [x] Soft-NMS
 - [x] [Generalized Attention](configs/empirical_attention/README.md)
 - [x] [GCNet](configs/gcnet/README.md)
-- [x] [Mixed Precision (FP16) Training](configs/fp16/README.md)
+- [x] [Mixed Precision (FP16) Training](configs/fp16)
 - [x] [InstaBoost](configs/instaboost/README.md)
-- [x] [GRoIE](configs/groie/README.md)
-- [x] [DetectoRS](configs/detectors/README.md)
-- [x] [Generalized Focal Loss](configs/gfl/README.md)
-- [x] [CornerNet](configs/cornernet/README.md)
-- [x] [Side-Aware Boundary Localization](configs/sabl/README.md)
-- [x] [YOLOv3](configs/yolo/README.md)
-- [x] [PAA](configs/paa/README.md)
-- [x] [YOLACT](configs/yolact/README.md)
-- [x] [CentripetalNet](configs/centripetalnet/README.md)
-- [x] [VFNet](configs/vfnet/README.md)
 
-Some other methods are also supported in [projects using MMDetection](./docs/projects.md).
 
 ## Installation
 
-Please refer to [get_started.md](docs/get_started.md) for installation.
+Please refer to [INSTALL.md](docs/INSTALL.md) for installation and dataset preparation.
 
-## Getting Started
 
-Please see [get_started.md](docs/get_started.md) for the basic usage of MMDetection.
-We provide [colab tutorial](demo/MMDet_Tutorial.ipynb), and full guidance for quick run [with existing dataset](docs/1_exist_data_model.md) and [with new dataset](docs/2_new_data_model.md) for beginners.
-There are also tutorials for [finetuning models](docs/tutorials/finetune.md), [adding new dataset](docs/tutorials/new_dataset.md), [designing data pipeline](docs/tutorials/data_pipeline.md), [customizing models](docs/tutorials/customize_models.md), [customizing runtime settings](docs/tutorials/customize_runtime.md) and [useful tools](docs/useful_tools.md).
+## Get Started
 
-Please refer to [FAQ](docs/faq.md) for frequently asked questions.
+Please see [GETTING_STARTED.md](docs/GETTING_STARTED.md) for the basic usage of MMDetection.
 
 ## Contributing
 
@@ -126,6 +101,7 @@ We appreciate all contributions to improve MMDetection. Please refer to [CONTRIB
 
 MMDetection is an open source project that is contributed by researchers and engineers from various colleges and companies. We appreciate all the contributors who implement their methods or add new features, as well as users who give valuable feedbacks.
 We wish that the toolbox and benchmark could serve the growing research community by providing a flexible toolkit to reimplement existing methods and develop their own new detectors.
+
 
 ## Citation
 
@@ -144,6 +120,7 @@ If you use this toolbox or benchmark in your research, please cite this project.
   year={2019}
 }
 ```
+
 
 ## Contact
 

@@ -10,27 +10,18 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-import os
-import sys
-
-sys.path.insert(0, os.path.abspath('..'))
+# import os
+# import sys
+# sys.path.insert(0, os.path.abspath('.'))
 
 # -- Project information -----------------------------------------------------
 
 project = 'MMDetection'
 copyright = '2018-2020, OpenMMLab'
-author = 'MMDetection Authors'
-version_file = '../mmdet/version.py'
-
-
-def get_version():
-    with open(version_file, 'r') as f:
-        exec(compile(f.read(), version_file, 'exec'))
-    return locals()['__version__']
-
+author = 'OpenMMLab'
 
 # The full version, including alpha/beta/rc tags
-release = get_version()
+release = '1.0.0'
 
 # -- General configuration ---------------------------------------------------
 
@@ -45,9 +36,7 @@ extensions = [
     'sphinx_markdown_tables',
 ]
 
-autodoc_mock_imports = [
-    'matplotlib', 'pycocotools', 'terminaltables', 'mmdet.version', 'mmcv.ops'
-]
+autodoc_mock_imports = ['torch', 'torchvision', 'mmcv']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
