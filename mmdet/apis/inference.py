@@ -181,7 +181,7 @@ def show_result(img,
         wait_time=wait_time,
         out_file=out_file)
     if not (show or out_file):
-        return img
+        return img, bboxes, labels
 
 
 def show_result_pyplot(img,
