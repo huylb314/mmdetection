@@ -3,4 +3,4 @@ from .registry import DATASETS
 
 @DATASETS.register_module
 class ZaloDataset(CocoDataset):
-    CLASSES = ("No entry", "No parking / waiting", "No turning", "Max Speed", "Other prohibition signs", "Warning", "Mandatory")
+    CLASSES = ("1. No entry", "2. No parking / waiting", "3. No turning", "4. Max Speed", "5. Other prohibition signs", "6. Warning", "7. Mandatory")
